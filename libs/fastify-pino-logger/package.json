@@ -1,0 +1,49 @@
+{
+  "name": "@libs/fastify-pino-logger",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "pnpm build --watch",
+    "build": "tsc -b -v"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist/**"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*"
+      ]
+    }
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./*": {
+      "import": "./dist/*.js",
+      "require": "./dist/*.js"
+    }
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.5",
+    "@nestjs/mapped-types": "*",
+    "fastify": "^5.4.0",
+    "hyperid": "^3.3.0",
+    "pino": "^9.7.0"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "22.16.4",
+    "ts-loader": "9.5.2",
+    "ts-node": "10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

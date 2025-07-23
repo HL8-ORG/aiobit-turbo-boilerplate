@@ -22,9 +22,9 @@ import {
   Zap,
 } from "lucide-react";
 import Link from "next/link";
-import ClipboardButton from "../components/clipboard-button";
-import MobileNavigation from "../components/mobile-navigation";
-import { ThemeToggle } from "../components/theme-toggle";
+import ClipboardButton from "../components/clipboard-button.js";
+import MobileNavigation from "../components/mobile-navigation.js";
+import { ThemeToggle } from "../components/theme-toggle.js";
 
 const features = [
   {
