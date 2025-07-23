@@ -14,7 +14,8 @@
     "clean": "git clean -xdf node_modules",
     "libs:fix": "pnpm dlx sherif@latest --fix",
     "preinstall": "husky install",
-    "bump-ui": "npx shadcn@latest add --all --overwrite -c packages/design-system"
+    "bump-ui": "npx shadcn@latest add --all --overwrite -c packages/design-system",
+    "docs": "cd ./tools/docs && mintlify dev"
   },
   "config": {
     "commitizen": {
