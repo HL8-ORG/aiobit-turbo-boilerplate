@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/logger.interceptor.ts","./src/logger.interface.ts","./src/logger.module.ts"],"version":"5.8.3"}
+{"root":["./src/index.ts","./src/logger.module.ts","./src/winston.config.ts"],"version":"5.8.3"}

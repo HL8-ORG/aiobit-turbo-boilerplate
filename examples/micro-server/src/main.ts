@@ -17,6 +17,7 @@ import {
   genReqId,
   REQUEST_ID_HEADER,
 } from "@libs/fastify-pino-logger";
+import { ApiModule } from "@/api/api.module";
 async function bootstrap() {
   // 初始化Fastify适配器，配置请求ID和日志
   const fastifyAdapter = new FastifyAdapter({
@@ -24,20 +25,20 @@ async function bootstrap() {
     genReqId: genReqId(), // 生成唯一请求ID
     logger: fastifyPinoOptions(process.env.NODE_ENV as FastifyLoggerEnv), // 根据环境配置Pino日志
   });
-  const app = await NestFactory.create<NestFastifyApplication>(
-    AppModule,
+  const api = await NestFactory.create<NestFastifyApplication>(
+    ApiModule,
     new FastifyAdapter({
       logger: true,
     }),
     { abortOnError: false }
   );
   // 配置异步上下文和日志系统
-  const asyncContext = app.get(AsyncContextProvider);
+  const asyncContext = api.get(AsyncContextProvider);
   const logger = new FastifyPinoLogger(
     asyncContext,
     fastifyAdapter.getInstance().log
   );
-  app.useLogger(logger); // 设置应用使用自定义日志
+  api.useLogger(logger); // 设置应用使用自定义日志
   // Swagger configuration
   const swaggerConfig = new DocumentBuilder()
     .setTitle("API Documentation")
@@ -46,12 +47,12 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
 
-  const document = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup("api", app, document);
+  const document = SwaggerModule.createDocument(api, swaggerConfig);
+  SwaggerModule.setup("api", api, document);
 
   writeFileSync("swagger.json", JSON.stringify(document, null, 2));
 
-  app.enableCors({
+  api.enableCors({
     origin: [
       "http://localhost:5175",
       "http://localhost:4173",
@@ -73,8 +74,8 @@ async function bootstrap() {
   });
   const appConfig = config();
 
-  app.useGlobalPipes(new ValidationPipe());
-  await app.listen(appConfig.http.port, appConfig.http.ip, () => {
+  api.useGlobalPipes(new ValidationPipe());
+  await api.listen(appConfig.http.port, appConfig.http.ip, () => {
     console.log(
       `HTTP server is listening on ${appConfig.http.ip}:${appConfig.http.port}`
     );
@@ -83,6 +84,6 @@ async function bootstrap() {
     );
   });
 
-  // await NestFactory.createMicroservice(AppModule);
+  await NestFactory.createMicroservice(AppModule);
 }
 bootstrap();

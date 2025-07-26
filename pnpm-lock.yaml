@@ -29,9 +29,9 @@ importers:
 
   apps/admin-server:
     dependencies:
-      '@bitloops/bl-boilerplate-core':
-        specifier: ^1.2.2
-        version: 1.2.2
+      '@fastify/static':
+        specifier: ^8.2.0
+        version: 8.2.0
       '@libs/fastify-pino-logger':
         specifier: workspace:*
         version: link:../../libs/fastify-pino-logger
@@ -44,9 +44,6 @@ importers:
       '@nestjs/core':
         specifier: ^11.1.5
         version: 11.1.5(@nestjs/common@11.1.5(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/event-emitter':
-        specifier: ^3.0.1
-        version: 3.0.1(@nestjs/common@11.1.5(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.5(@nestjs/common@11.1.5(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))
       '@nestjs/platform-fastify':
         specifier: 11.1.4
         version: 11.1.4(@fastify/static@8.2.0)(@nestjs/common@11.1.5(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.5(@nestjs/common@11.1.5(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))
@@ -62,21 +59,12 @@ importers:
       '@swc/jest':
         specifier: ^0.2.38
         version: 0.2.39(@swc/core@1.13.2)
-      async-mutex:
-        specifier: ^0.5.0
-        version: 0.5.0
       class-transformer:
         specifier: 0.5.1
         version: 0.5.1
       class-validator:
         specifier: 0.14.2
         version: 0.14.2
-      fastify:
-        specifier: ^5.4.0
-        version: 5.4.0
-      nats:
-        specifier: ^2.29.3
-        version: 2.29.3
       reflect-metadata:
         specifier: 0.2.2
         version: 0.2.2
@@ -309,11 +297,11 @@ importers:
         specifier: ^5.8.3
         version: 5.8.3
 
-  examples/monolithic-server:
+  examples/micro-server:
     dependencies:
-      '@fastify/static':
-        specifier: ^8.2.0
-        version: 8.2.0
+      '@bitloops/bl-boilerplate-core':
+        specifier: ^1.2.2
+        version: 1.2.2
       '@libs/fastify-pino-logger':
         specifier: workspace:*
         version: link:../../libs/fastify-pino-logger
@@ -326,6 +314,9 @@ importers:
       '@nestjs/core':
         specifier: ^11.1.5
         version: 11.1.5(@nestjs/common@11.1.5(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/event-emitter':
+        specifier: ^3.0.1
+        version: 3.0.1(@nestjs/common@11.1.5(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.5(@nestjs/common@11.1.5(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))
       '@nestjs/platform-fastify':
         specifier: 11.1.4
         version: 11.1.4(@fastify/static@8.2.0)(@nestjs/common@11.1.5(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.5(@nestjs/common@11.1.5(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))
@@ -341,12 +332,21 @@ importers:
       '@swc/jest':
         specifier: ^0.2.38
         version: 0.2.39(@swc/core@1.13.2)
+      async-mutex:
+        specifier: ^0.5.0
+        version: 0.5.0
       class-transformer:
         specifier: 0.5.1
         version: 0.5.1
       class-validator:
         specifier: 0.14.2
         version: 0.14.2
+      fastify:
+        specifier: ^5.4.0
+        version: 5.4.0
+      nats:
+        specifier: ^2.29.3
+        version: 2.29.3
       reflect-metadata:
         specifier: 0.2.2
         version: 0.2.2

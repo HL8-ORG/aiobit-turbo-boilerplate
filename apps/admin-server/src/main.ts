@@ -6,7 +6,7 @@ import {
 } from "@nestjs/platform-fastify";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 
-import { AppModule } from "./app.module";
+import { ApiModule } from "./api.module";
 import config from "./config/configuration";
 import { writeFileSync } from "fs";
 import {
@@ -17,7 +17,6 @@ import {
   genReqId,
   REQUEST_ID_HEADER,
 } from "@libs/fastify-pino-logger";
-import { ApiModule } from "@/api/api.module";
 async function bootstrap() {
   // 初始化Fastify适配器，配置请求ID和日志
   const fastifyAdapter = new FastifyAdapter({
@@ -84,6 +83,6 @@ async function bootstrap() {
     );
   });
 
-  await NestFactory.createMicroservice(AppModule);
+  // await NestFactory.createMicroservice(AppModule);
 }
 bootstrap();

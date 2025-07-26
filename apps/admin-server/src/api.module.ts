@@ -1,6 +1,6 @@
 import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
+import { ApiController } from "./api/api.controller";
+import { ApiService } from "./api/api.service";
 import configuration from "./config/configuration";
 import { ConfigModule } from "@nestjs/config";
 import {
@@ -8,6 +8,7 @@ import {
   FastifyPinoLogger,
   RequestIdMiddleware,
 } from "@libs/fastify-pino-logger";
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -16,11 +17,12 @@ import {
       envFilePath: process.env.ENV_FILE || ".development.env",
       load: [configuration],
     }),
+    UserModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, AsyncContextProvider, FastifyPinoLogger],
+  controllers: [ApiController],
+  providers: [ApiService, AsyncContextProvider, FastifyPinoLogger],
 })
-export class AppModule implements NestModule {
+export class ApiModule implements NestModule {
   /**
    * 配置全局中间件
    *
